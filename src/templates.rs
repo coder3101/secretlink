@@ -14,10 +14,6 @@ pub struct GotoTemplate {
 }
 
 #[derive(Template)]
-#[template(path = "privacy.html")]
-pub struct PrivacyTemplate {}
-
-#[derive(Template)]
 #[template(path = "result.html")]
 pub struct ResultTemplate {
     pub url: String,

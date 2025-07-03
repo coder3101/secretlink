@@ -17,7 +17,7 @@ use serde::{Deserialize, Serialize};
 use sqlx::{PgPool, postgres::PgPoolOptions};
 use templates::{
     AboutTemplate, ConsumeTemplate, GotoTemplate, HowItWorksTemplate, IndexTemplate,
-    PrivacyTemplate, ResultTemplate,
+    ResultTemplate,
 };
 use tracing::Level;
 use tracing_subscriber::{Registry, layer::SubscriberExt, util::SubscriberInitExt};
@@ -49,11 +49,12 @@ struct AppState<T: SecretControl> {
 async fn main() -> miette::Result<()> {
     dotenv().ok();
     let db = std::env::var("DATABASE_URL").expect("could not connect to database");
-    let axiom_layer = tracing_axiom::default("secretlink").into_diagnostic()?;
+    let addr = std::env::var("LISTEN_ADDR").unwrap_or("0.0.0.0:8080".to_owned());
+    // let axiom_layer = tracing_axiom::default("secretlink").into_diagnostic()?;
     let filter = tracing_subscriber::filter::LevelFilter::from_level(Level::INFO);
     Registry::default()
         .with(filter)
-        .with(axiom_layer)
+        // .with(axiom_layer)
         .with(tracing_subscriber::fmt::layer())
         .init();
 
@@ -74,11 +75,11 @@ async fn main() -> miette::Result<()> {
 
     let app = router(app_state);
 
-    let listener = tokio::net::TcpListener::bind("0.0.0.0:8080")
+    tracing::info!("starting listening on {addr}");
+    let listener = tokio::net::TcpListener::bind(addr)
         .await
         .into_diagnostic()?;
 
-    tracing::info!("started listening on 0.0.0.0:8080");
     axum::serve(listener, app).await.into_diagnostic()?;
     Ok(())
 }
@@ -90,7 +91,6 @@ fn router(app_state: AppState<SecretController>) -> Router {
             axum_static::static_router("static").with_state(()),
         )
         .route("/", get(root))
-        .route("/privacy", get(privacy))
         .route("/about", get(about))
         .route("/how-it-works", get(how_it_works))
         .route("/goto/:id", get(goto::<SecretController>))
@@ -102,11 +102,6 @@ fn router(app_state: AppState<SecretController>) -> Router {
 #[tracing::instrument]
 async fn root() -> IndexTemplate {
     IndexTemplate {}
-}
-
-#[tracing::instrument]
-async fn privacy() -> PrivacyTemplate {
-    PrivacyTemplate {}
 }
 
 #[tracing::instrument]
