@@ -1,0 +1,58 @@
+<div class="card-body">
+	<h2 class="card-title text-2xl mb-4">Your Secret Message</h2>
+	<p class="text-base-content/70 mb-6">This message can only be viewed once. After you close this page, the message will be permanently deleted.</p>
+	
+	<div class="form-control">
+		<div class="relative">
+			<textarea 
+				class="textarea textarea-bordered textarea-lg w-full h-32 resize-none" 
+				readonly
+				id="secret-content"
+			>{{ secret }}</textarea>
+			<button 
+				class="btn btn-square absolute top-2 right-2" 
+				onclick="copyToClipboard()" 
+				title="Copy to clipboard"
+			>
+				<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
+				</svg>
+			</button>
+		</div>
+	</div>
+
+	<div class="alert alert-warning mt-6">
+		<svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
+			<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+		</svg>
+		<div>
+			<h3 class="font-bold">Warning!</h3>
+			<div class="text-sm">This message will be permanently deleted after you close this page. Make sure to save it if you need it later.</div>
+		</div>
+	</div>
+
+	<div class="card-actions justify-end mt-6">
+		<a href="/" class="btn btn-ghost">Share Your Own Secret</a>
+	</div>
+</div>
+
+<script>
+	function copyToClipboard() {
+		const secretContent = document.getElementById('secret-content');
+		secretContent.select();
+		document.execCommand('copy');
+		
+		// Show feedback
+		const button = event.currentTarget;
+		const originalContent = button.innerHTML;
+		button.innerHTML = `
+			<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+				<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+			</svg>
+		`;
+		
+		setTimeout(() => {
+			button.innerHTML = originalContent;
+		}, 2000);
+	}
+</script>

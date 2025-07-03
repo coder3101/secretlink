@@ -1,0 +1,271 @@
+{% extends "base.html" %} {% block content %}
+<div class="hero min-h-[calc(100vh-4rem)] py-12">
+    <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-12">
+                <h1 class="text-4xl md:text-5xl font-bold mb-4 tracking-tight">
+                    Share Secrets Securely
+                </h1>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Send passwords, API keys, and sensitive information
+                    securely. Links self-destruct after a single view.
+                </p>
+            </div>
+
+            <div class="card shadow-lg p-6 md:p-8 mb-12" id="main-card">
+                <form id="secret-form" class="space-y-6">
+                    <div>
+                        <label class="label">
+                            <span class="label-text text-base font-medium"
+                                >Your Secret Message</span
+                            >
+                            <span class="label-text-alt" id="charCount"
+                                >0 characters</span
+                            >
+                        </label>
+                        <textarea
+                            name="secret"
+                            id="secret"
+                            class="textarea textarea-bordered w-full h-32 font-mono text-sm"
+                            placeholder="Type or paste your secret message here..."
+                            oninput="updateCharCount(this); toggleButton(this);"
+                            required
+                        ></textarea>
+                    </div>
+
+                    <div>
+                        <label class="label">
+                            <span class="label-text text-base font-medium"
+                                >Expiration Time</span
+                            >
+                        </label>
+                        <div
+                            class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4"
+                        >
+                            <label
+                                class="flex items-center p-4 border rounded-lg cursor-pointer hover:border-primary transition-colors"
+                            >
+                                <input
+                                    type="radio"
+                                    name="expiry"
+                                    value="0"
+                                    class="radio radio-primary"
+                                    checked
+                                />
+                                <span class="ml-2">No Expiry</span>
+                            </label>
+                            <label
+                                class="flex items-center p-4 border rounded-lg cursor-pointer hover:border-primary transition-colors"
+                            >
+                                <input
+                                    type="radio"
+                                    name="expiry"
+                                    value="3600"
+                                    class="radio radio-primary"
+                                />
+                                <span class="ml-2">1 Hour</span>
+                            </label>
+                            <label
+                                class="flex items-center p-4 border rounded-lg cursor-pointer hover:border-primary transition-colors"
+                            >
+                                <input
+                                    type="radio"
+                                    name="expiry"
+                                    value="86400"
+                                    class="radio radio-primary"
+                                />
+                                <span class="ml-2">24 Hours</span>
+                            </label>
+                            <label
+                                class="flex items-center p-4 border rounded-lg cursor-pointer hover:border-primary transition-colors"
+                            >
+                                <input
+                                    type="radio"
+                                    name="expiry"
+                                    value="604800"
+                                    class="radio radio-primary"
+                                />
+                                <span class="ml-2">1 Week</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <button
+                        type="submit"
+                        class="btn btn-primary w-full"
+                        id="submitBtn"
+                        disabled
+                    >
+                        Generate Secure Link
+                    </button>
+                </form>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="card bg-base-100 shadow-sm">
+                    <div class="card-body">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="h-8 w-8 text-primary mb-3"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+                            />
+                        </svg>
+                        <h2 class="card-title">End to End Encrypted</h2>
+                        <p class="text-gray-600">
+                            Your secrets are encrypted before sent to our sent.
+                        </p>
+                    </div>
+                </div>
+                <div class="card bg-base-100 shadow-sm">
+                    <div class="card-body">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="h-8 w-8 text-primary mb-3"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                            />
+                        </svg>
+                        <h2 class="card-title">One-Time Access</h2>
+                        <p class="text-gray-600">
+                            Links self-destruct after being viewed once.
+                        </p>
+                    </div>
+                </div>
+                <div class="card bg-base-100 shadow-sm">
+                    <div class="card-body">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="h-8 w-8 text-primary mb-3"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z"
+                            />
+                        </svg>
+                        <h2 class="card-title">No Registration</h2>
+                        <p class="text-gray-600">
+                            Share secrets instantly, no account required.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var keyBase64 = null;
+
+    function updateCharCount(textarea) {
+        const count = textarea.value.length;
+        document.getElementById("charCount").textContent =
+            `${count} characters`;
+    }
+
+    function toggleButton(textarea) {
+        const submitBtn = document.getElementById("submitBtn");
+        submitBtn.disabled = textarea.value.length === 0;
+    }
+
+    async function encryptData() {
+        const plainText = document.getElementById("secret").value;
+
+        if (!plainText) {
+            return;
+        }
+
+        const encoder = new TextEncoder();
+        const data = encoder.encode(plainText);
+
+        try {
+            const iv = crypto.getRandomValues(new Uint8Array(12));
+            const key = await crypto.subtle.generateKey(
+                {
+                    name: "AES-GCM",
+                    length: 256,
+                },
+                true,
+                ["encrypt", "decrypt"],
+            );
+
+            const cipherText = await crypto.subtle.encrypt(
+                {
+                    name: "AES-GCM",
+                    iv,
+                },
+                key,
+                data,
+            );
+
+            const base64EncryptedData = urlSafeBase64(
+                String.fromCharCode(...new Uint8Array(cipherText)),
+            );
+            const ivBase64 = urlSafeBase64(String.fromCharCode(...iv));
+
+            const exportedKey = await crypto.subtle.exportKey("raw", key);
+            keyBase64 = urlSafeBase64(
+                String.fromCharCode(...new Uint8Array(exportedKey)),
+            );
+
+            return {
+                ciperText: base64EncryptedData,
+                iv: ivBase64,
+                expiry: document.querySelector('input[name="expiry"]:checked')
+                    .value,
+            };
+        } catch (error) {
+            console.error("Error encrypting data:", error);
+            alert(
+                "An error occurred while encrypting the data. Please try again.",
+            );
+        }
+    }
+
+    document
+        .getElementById("secret-form")
+        .addEventListener("submit", async function (event) {
+            event.preventDefault();
+            const payload = await encryptData();
+
+            const form = event.target;
+
+            htmx.ajax("POST", "/api/generate-url", {
+                values: payload,
+                target: "#main-card",
+            });
+        });
+
+    htmx.on("#main-card", "htmx:afterSwap", function (event) {
+        const url = document.getElementById("secret-url");
+        url.value = window.location.href + url.value + "?key=" + keyBase64;
+        document.getElementById("secret-form").reset();
+    });
+
+    function urlSafeBase64(str) {
+        return btoa(str)
+            .replace(/\+/g, "-")
+            .replace(/\//g, "_")
+            .replace(/=+$/, "");
+    }
+</script>
+{% endblock %}

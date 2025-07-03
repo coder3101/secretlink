@@ -1,0 +1,60 @@
+<div class="card-body">
+	<h2 class="card-title text-2xl mb-4">Your Secure Link</h2>
+	<p class="text-base-content/70 mb-6">Share this link with anyone you want to share your secret with. The link will be destroyed after being viewed once.</p>
+	
+	<div class="form-control">
+		<div class="relative">
+			<input 
+				type="text" 
+				value="{{ url }}" 
+				class="input input-bordered w-full pr-12 font-mono text-sm" 
+				readonly
+				id="secret-url"
+			/>
+			<button 
+				class="btn btn-square absolute top-0 right-0 rounded-l-none" 
+				onclick="copyToClipboard()" 
+				title="Copy to clipboard"
+			>
+				<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
+				</svg>
+			</button>
+		</div>
+	</div>
+
+	<div class="alert alert-info mt-6">
+		<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-current shrink-0 w-6 h-6">
+			<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+		</svg>
+		<div>
+			<h3 class="font-bold">Important!</h3>
+			<div class="text-sm">This link can only be viewed once. After viewing, it will be permanently deleted.</div>
+		</div>
+	</div>
+
+	<div class="card-actions justify-end mt-6">
+		<button class="btn btn-ghost" onclick="window.location.reload()">Create Another Secret</button>
+	</div>
+</div>
+
+<script>
+	function copyToClipboard() {
+		const secretUrl = document.getElementById('secret-url');
+		secretUrl.select();
+		document.execCommand('copy');
+		
+		// Show feedback
+		const button = event.currentTarget;
+		const originalContent = button.innerHTML;
+		button.innerHTML = `
+			<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+				<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+			</svg>
+		`;
+		
+		setTimeout(() => {
+			button.innerHTML = originalContent;
+		}, 2000);
+	}
+</script>

@@ -1,0 +1,34 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "\n        SELECT\n            expiry,\n            expired AS consumed,\n            (created_at + INTERVAL '1 second' * expiry) < CURRENT_TIMESTAMP AS expired\n        FROM\n            secrets where uuid = $1",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "expiry",
+        "type_info": "Int4"
+      },
+      {
+        "ordinal": 1,
+        "name": "consumed",
+        "type_info": "Bool"
+      },
+      {
+        "ordinal": 2,
+        "name": "expired",
+        "type_info": "Bool"
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Uuid"
+      ]
+    },
+    "nullable": [
+      true,
+      true,
+      null
+    ]
+  },
+  "hash": "4f1fae97352038571fbf64a2f3c869215c6a5957268618e19cb88bc3440a0e9c"
+}

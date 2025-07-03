@@ -1,0 +1,81 @@
+{% extends "base.html" %} {% block content %}
+<div class="hero min-h-[calc(100vh-4rem)] py-12">
+    <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-12">
+                <h1 class="text-4xl md:text-5xl font-bold mb-4 tracking-tight">
+                    How SecretLink Works
+                </h1>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    A simple and secure way to share sensitive information.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 gap-8 mb-12">
+                <div class="card bg-base-100 shadow-sm">
+                    <div class="card-body">
+                        <h2 class="card-title">Cryptography at work</h2>
+                        <ol class="list-decimal list-inside space-y-4">
+                            <li>
+                                <h3 class="font-semibold">
+                                    End-to-End Encryption
+                                </h3>
+                                <p class="text-gray-600">
+                                    When you initiate the sharing process, your
+                                    secret is encrypted directly within your
+                                    browser using
+                                    <a
+                                        target="_blank"
+                                        href="https://en.wikipedia.org/wiki/Advanced_Encryption_Standard"
+                                        class="underline"
+                                        >Advanced Encryption Standard (AES) GCM
+                                        256-bit encryption</a
+                                    >. This ensures that your data is secure
+                                    before it even leaves your device.
+                                </p>
+                            </li>
+                            <li>
+                                <h3 class="font-semibold">
+                                    Secure Server Storage
+                                </h3>
+                                <p class="text-gray-600">
+                                    Our server only stores the encrypted cipher
+                                    and a nonce, along with a unique UUID
+                                    generated for your secret. We never have
+                                    access to the actual content of your secret.
+                                </p>
+                            </li>
+                            <li>
+                                <h3 class="font-semibold">
+                                    Unique Secret Link
+                                </h3>
+                                <p class="text-gray-600">
+                                    A unique link is created by combining the
+                                    server's UUID and the encryption key, which
+                                    remains with you. Only those with this link
+                                    can decrypt and access the secret, ensuring
+                                    complete privacy.
+                                </p>
+                            </li>
+                            <li>
+                                <h3 class="font-semibold">Share & Forget</h3>
+                                <p class="text-gray-600">
+                                    Once the recipient accesses the link, the
+                                    server decrypts and presents the secret.
+                                    After viewing, the secret is permanently
+                                    deleted, ensuring it cannot be accessed
+                                    again.
+                                </p>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <a href="/" class="btn btn-primary">Start Sharing Secrets</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

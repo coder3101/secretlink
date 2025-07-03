@@ -1,0 +1,83 @@
+{% extends "base.html" %} {% block content %}
+<div class="hero min-h-[calc(100vh-4rem)] py-12">
+    <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-12">
+                <h1 class="text-4xl md:text-5xl font-bold mb-4 tracking-tight">
+                    About SecretLink
+                </h1>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    A secure, simple, and reliable way to share sensitive
+                    information.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                <div class="card bg-base-100 shadow-sm">
+                    <div class="card-body">
+                        <h2 class="card-title">How to Use</h2>
+                        <ol class="list-decimal list-inside space-y-2">
+                            <li>Create your secret message</li>
+                            <li>Set an optional expiration time</li>
+                            <li>Get a secure link</li>
+                            <li>Share the link with your recipient</li>
+                            <li>Recipient can access secret only once</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="card bg-base-100 shadow-sm">
+                    <div class="card-body">
+                        <h2 class="card-title">Security Features</h2>
+                        <ul class="list-disc list-inside space-y-2">
+                            <li>End to End Encrypted</li>
+                            <li>One-time access only</li>
+                            <li>Optional expiration time</li>
+                            <li>No registration required</li>
+                            <li>Secure storage on database</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card bg-base-100 shadow-sm mb-12">
+                <div class="card-body">
+                    <h2 class="card-title">Why Choose SecretLink?</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div>
+                            <h3 class="font-semibold mb-2">Fast & Simple</h3>
+                            <p class="text-gray-600">
+                                Share secrets instantly with no account
+                                required.
+                            </p>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold mb-2">Secure</h3>
+                            <p class="text-gray-600">
+                                Your secrets are encrypted using
+                                <a
+                                    target="_blank"
+                                    href="https://en.wikipedia.org/wiki/Advanced_Encryption_Standard"
+                                    ><u>AES-GCM</u></a
+                                >
+                                256 bit encryption.
+                            </p>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold mb-2">Self-Destructing</h3>
+                            <p class="text-gray-600">
+                                Links expire after a single view or set time
+                                period.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <a href="/" class="btn btn-primary">Start Sharing Secrets</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

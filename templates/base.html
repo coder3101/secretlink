@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>SecretLink - Secure One-time Secret Sharing</title>
+	<link rel="apple-touch-icon" sizes="180x180" href="/static/favicons/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="48x48" href="/static/favicons/favicon-48.png" />
+	<link rel="icon" type="image/png" sizes="32x32" href="/static/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/static/favicon-16x16.png">
+	<link rel="manifest" href="/static/favicons/manifest.json">
+	<meta name="msapplication-TileColor" content="#da532c">
+	<meta name="theme-color" content="#ffffff">
+	<meta name="google-site-verification" content="sDgm6ikKWMR-Cx-6nUDYnDCFaH5lhkACIJCkawCkOgg" />
+	<link href="https://cdn.jsdelivr.net/npm/daisyui@4.4.19/dist/full.css" rel="stylesheet" type="text/css" />
+	<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2/dist/tailwind.min.css" rel="stylesheet"
+		type="text/css" />
+	<link href="https://api.fontshare.com/v2/css?f[]=space-grotesk@400,500,600,700&display=swap" rel="stylesheet">
+	<script src="https://unpkg.com/htmx.org@1.9.10"></script>
+	<style>
+		body {
+			font-family: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+			min-height: 100vh;
+			display: flex;
+			flex-direction: column;
+			background-color: #f8fafc;
+		}
+
+		.navbar {
+			background-color: rgba(255, 255, 255, 0.8);
+			backdrop-filter: blur(10px);
+			border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+			position: sticky;
+			top: 0;
+			z-index: 1000;
+		}
+
+		.footer {
+			background-color: #1a1a1a;
+			color: #ffffff;
+			padding: 2rem 0;
+			margin-top: auto;
+		}
+
+		.btn {
+			font-weight: 500;
+			letter-spacing: -0.02em;
+		}
+
+		.hero {
+			background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+		}
+
+		.card {
+			border: 1px solid rgba(0, 0, 0, 0.1);
+			background-color: white;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="navbar bg-base-100 shadow-sm px-4 sm:px-8">
+		<div class="flex-1">
+			<a href="/" class="text-xl font-semibold tracking-tight">SecretLink</a>
+		</div>
+		<div class="flex-none gap-4">
+			<a href="/how-it-works" class="link link-hover">How it Works</a>
+			<a href="/about" class="link link-hover">About</a>
+			<a href="/privacy" class="link link-hover">Privacy</a>
+		</div>
+	</div>
+
+	<main class="flex-grow">
+		{% block content %}{% endblock %}
+	</main>
+
+	<footer class="bg-gray-900 text-gray-300">
+		<div class="container mx-auto px-6 py-12">
+			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+				<!-- Brand Section -->
+				<div class="space-y-4">
+					<h2 class="text-2xl font-semibold text-white">SecretLink</h2>
+					<p class="text-sm text-gray-400">Secure one-time secret sharing made simple and
+						safe.</p>
+				</div>
+
+				<!-- Quick Links -->
+				<div class="space-y-4">
+					<h3 class="text-lg font-medium text-white">Quick Links</h3>
+					<ul class="space-y-2">
+						<li><a href="/about"
+								class="hover:text-white transition-colors duration-200">About
+								us</a></li>
+						<li><a href="/how-it-works"
+								class="hover:text-white transition-colors duration-200">How
+								it works</a></li>
+						<li><a href="/privacy"
+								class="hover:text-white transition-colors duration-200">Privacy
+								Policy</a></li>
+					</ul>
+				</div>
+
+				<!-- Contact -->
+				<div class="space-y-4">
+					<h3 class="text-lg font-medium text-white">Contact</h3>
+					<p class="text-sm text-gray-400">Have questions? We're here to help.</p>
+					<a href="mailto:support@coder3101.com"
+						class="text-sm hover:text-white transition-colors duration-200">support@coder3101.com</a>
+				</div>
+
+				<!-- Social Links (if needed) -->
+				<div class="space-y-4">
+					<h3 class="text-lg font-medium text-white">Connect</h3>
+					<div class="flex space-x-4">
+						<a href="https://twitter.com/coder3101"
+							class="hover:text-white transition-colors duration-200">Twitter</a>
+						<a href="https://github.com/coder3101"
+							class="hover:text-white transition-colors duration-200">GitHub</a>
+					</div>
+				</div>
+			</div>
+
+			<!-- Copyright -->
+			<div class="mt-12 pt-8 border-t border-gray-800">
+				<p class="text-sm text-center text-gray-500">&copy; 2025 SecretLink. All rights
+					reserved.</p>
+			</div>
+		</div>
+	</footer>
+</body>
+
+</html>

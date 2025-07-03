@@ -1,0 +1,14 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "UPDATE secrets SET expired = true where uuid = $1",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Left": [
+        "Uuid"
+      ]
+    },
+    "nullable": []
+  },
+  "hash": "3b7ec6fdcc692f1790ff2c44ab1b6428c9f9c51a26d6dcab922b3325434843cb"
+}
